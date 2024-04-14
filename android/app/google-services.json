@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049044691812",
+    "project_id": "whats-up-bro",
+    "storage_bucket": "whats-up-bro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049044691812:android:e12da9029db1f5d628a871",
+        "android_client_info": {
+          "package_name": "com.example.whats_up_broo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049044691812-3bua4tooisnnfcq51f3nqapm8eqgj7fh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxEj6IsRgoRAtL5EdL8peeUnsnUPK1TG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049044691812-3bua4tooisnnfcq51f3nqapm8eqgj7fh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

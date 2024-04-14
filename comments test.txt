@@ -1,0 +1,300 @@
+//! Home Sccreen
+/* StreamBuilder<QuerySnapshot>(
+                stream:
+                    FirebaseFirestore.instance.collection('users').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<UserData> usersList = [];
+                    for (int i = 0; i < snapshot.data!.docs.length; i++) {
+                      usersList.add(UserData.fromJson(snapshot.data!.docs[i]));
+                    }
+                    return Stack(
+                      children: [
+                        ListView.builder(
+                          itemCount: usersList.length,
+                          itemBuilder: (context, index) {
+                            if (userData.uid != usersList[index].uid && usersList.isNotEmpty) {
+                              return SizedBox(
+                                height: 75,
+                                child: Center(
+                                  child: ListTile(
+                                    onTap: () => Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SingleChatScreen(
+                                                    receiverUser:
+                                                        usersList[index]))),
+                                    leading: CircleAvatar(
+                                      radius: 24,
+                                      backgroundColor: Color(0xffE5E6E8),
+                                      backgroundImage: usersList[index]
+                                                  .profileImageUrl ==
+                                              null
+                                          ? AssetImage(
+                                              'images/blank_profile_image.jpg')
+                                          : NetworkImage(usersList[index]
+                                                  .profileImageUrl!)
+                                              as ImageProvider,
+                                    ),
+                                    title: Text(usersList[index].username,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        Positioned(
+                          right: 50,
+                          bottom: 50,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              overlayColor:
+                                  MaterialStateProperty.resolveWith<Color?>(
+                                (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.pressed)) {
+                                    return Colors.deepPurple;
+                                  }
+                                  return null;
+                                },
+                              ),
+                              textStyle: MaterialStateProperty.resolveWith(
+                                  (states) => TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                              backgroundColor: MaterialStateColor.resolveWith(
+                                  (states) => kPrimaryColor),
+                              foregroundColor: MaterialStateColor.resolveWith(
+                                  (states) => Colors.white),
+                            ),
+                            onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChatScreen(id: userData.uid))),
+                            child: Text(
+                              'Go to Chat',
+                              style: TextStyle(fontFamily: 'Courgette'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Center(child: Text('No Users founds'));
+                  }
+                }), */
+
+
+
+
+
+//! ========================================================================================================================================================
+
+
+//! AuthMethods
+
+  /* Future<void> sendMessage(
+      String senderId, String message, String receiverId) async {
+    Message model = Message(
+      message: message,
+      timeCreate: DateTime.now().toString(),
+      senderId: senderId,
+      receiverId: receiverId,
+    );
+    //!set my chats
+    FirebaseFirestore.instance
+        .collection('userss')
+        .doc(senderId)
+        .collection('chats')
+        .doc(receiverId)
+        .collection('messages')
+        .add(model.toJson());
+
+    //!set receirver chats
+    FirebaseFirestore.instance
+        .collection('userss')
+        .doc(receiverId)
+        .collection('chats')
+        .doc(senderId)
+        .collection('messages')
+        .add(model.toJson());
+  } */
+
+  /* Future<Message> getMessageData(String receiverId) async {
+    User currentUser = auth.currentUser!;
+    var snap = await firestore
+        .collection('users')
+        .doc(currentUser.uid)
+        .collection('chats')
+        .doc(receiverId)
+        .collection('messages')
+        .get();
+    return Message.fromJson(snap);
+  } */
+
+//!==================================================================================================================================================
+
+//! SingleChatScreen
+
+/* // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:whats_up_broo/classes/message.dart';
+import 'package:whats_up_broo/classes/userData.dart';
+import 'package:whats_up_broo/resources/auth_methods.dart';
+import 'package:whats_up_broo/screens/other_user_profiles_screen.dart';
+import 'package:whats_up_broo/widgets/send_textField.dart';
+import '../provider/myTheme.dart';
+import '../provider/user_provider.dart';
+import '../widgets/chat_bubble.dart';
+
+class SingleChatScreen extends StatelessWidget {
+  SingleChatScreen({super.key, required this.receiverUser});
+  UserData receiverUser;
+  var sendController = TextEditingController();
+  var scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var myTheme = Provider.of<MyTheme>(context);
+    UserData? userData = Provider.of<UserProvider>(context).getUser;
+
+    /* var messages = FirebaseFirestore.instance
+        .collection('chats/${user.uid}/messages')
+        .orderBy(kTimeCreate, descending: true)
+        .snapshots(); */
+
+    /* return StreamBuilder<QuerySnapshot>(
+        stream: null,
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            List<Message> messagesList = [];
+            for (int i = 0; i < snapshot.data!.docs.length; i++) {
+              messagesList.add(Message.fromJson(snapshot.data!.docs[i]));
+            } */
+            return GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Scaffold(
+                appBar: AppBar(
+                  leading: IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: Icon(Icons.arrow_back_ios_new_outlined)),
+                  title: Row(
+                    children: [
+                      IconButton(
+                        icon: receiverUser.profileImageUrl == null
+                            ? CircleAvatar(
+                                backgroundColor: Color(0xffE5E6E8),
+                                backgroundImage: AssetImage(
+                                    'images/blank_profile_image.jpg'),
+                                radius: 18,
+                              )
+                            : CircleAvatar(
+                                backgroundColor: Color(0xffE5E6E8),
+                                backgroundImage:
+                                    NetworkImage(receiverUser.profileImageUrl!),
+                                radius: 18,
+                              ),
+                        onPressed: () => Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (context) => OtherUserProfileScreen(
+                                    userData: receiverUser))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(receiverUser.username),
+                      ),
+                    ],
+                  ),
+                ),
+                body: Column(
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        reverse: true,
+                        controller: scrollController,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            color: Colors.blue,
+                            height: 30,
+                            width: 50,
+                          ) /* messagesList[index].senderId == userData!.uid
+                              ? SenderBubble(
+                                  message: messagesList[index],
+                                )
+                              : OthersBubble(
+                                  message: messagesList[index],
+                                ) */
+                              ;
+                        },
+                      ),
+                    ),
+                    sendTextField(
+                        sendController, size, myTheme, context, sendMessages)
+                  ],
+                ),
+              ),
+            );
+         /*  } else {
+            return Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: Icon(Icons.arrow_back_ios_new_outlined)),
+                title: Row(
+                  children: [
+                    IconButton(
+                      icon: receiverUser.profileImageUrl == null
+                          ? CircleAvatar(
+                              backgroundColor: Color(0xffE5E6E8),
+                              backgroundImage:
+                                  AssetImage('images/blank_profile_image.jpg'),
+                              radius: 18,
+                            )
+                          : CircleAvatar(
+                              backgroundColor: Color(0xffE5E6E8),
+                              backgroundImage:
+                                  NetworkImage(receiverUser.profileImageUrl!),
+                              radius: 18,
+                            ),
+                      onPressed: () => Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (context) => OtherUserProfileScreen(
+                                  userData: receiverUser))),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(receiverUser.username),
+                    ),
+                  ],
+                ),
+              ),
+              body: Center(
+                  child: Text(
+                'Loding...',
+                style: Theme.of(context).textTheme.headlineLarge,
+              )),
+            );
+          }
+        }); */
+  }
+
+  void sendMessages(BuildContext context, String message) async {
+    UserData? userData = Provider.of<UserProvider>(context).getUser;
+    if (message.isNotEmpty) {
+      await AuthMethods().sendMessage(userData!.uid, message, receiverUser.uid);
+      sendController.clear();
+      scrollController.animateTo(0,
+          duration: Duration(seconds: 1), curve: Curves.easeIn);
+    }
+  }
+} */

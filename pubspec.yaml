@@ -1,0 +1,64 @@
+name: whats_up_broo
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  lottie: ^2.4.0
+  firebase_core: ^2.13.1
+  firebase_auth: ^4.6.2
+  modal_progress_hud_nsn: ^0.4.0
+  provider: ^6.0.5
+  cloud_firestore: ^4.8.1
+  intl: ^0.18.1
+  shared_preferences: ^2.1.2
+  chat_bubbles: ^1.4.1
+  image_picker: ^0.8.9
+  firebase_storage: ^11.2.3
+  awesome_snackbar_content: ^0.1.1
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^2.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+   - images/
+  #   - images/a_dot_ham.jpeg
+
+
+  # example:
+  fonts:
+ 
+    - family: Oswald
+      fonts:
+       - asset: fonts/Oswald-VariableFont_wght.ttf
+
+    - family: Courgette
+      fonts:
+       - asset: fonts/Courgette-Regular.ttf
